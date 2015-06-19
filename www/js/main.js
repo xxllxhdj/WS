@@ -5,7 +5,8 @@ requirejs.config({
         app: 'js/app',
         ionic: 'lib/ionic/js/ionic.bundle',
         ngCordova: 'lib/ngCordova/dist/ng-cordova',
-        domReady: 'lib/requirejs/domReady'
+        domReady: 'lib/requirejs/domReady',
+        routeResolver: 'js/routeResolver'
     },
     shim: {
         ngCordova: {

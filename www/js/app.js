@@ -2,12 +2,14 @@ define([
     'ionic',
     'ngCordova',
 
+    'routeResolver',
     'js/constants'
 ], function () {
-    angular.module('WorkStation', [
+    var app = angular.module('WorkStation', [
         'ionic',
         'ngCordova',
 
+        'routeResolverServices',
         'WorkStation.constants'
     ])
 
@@ -52,7 +54,8 @@ define([
             });
 
             function onHardwareBackButton(e) {
-                if ($location.path().indexOf('/app/') != -1) {
+                //if ($location.path().indexOf('/app/') != -1) {
+                if ($location.path().indexOf('/app/demo') != -1 || $location.path().indexOf('/app/about') != -1) {
                     if ($rootScope.confirmExit) {
                         ionic.Platform.exitApp();
                     } else {
@@ -77,7 +80,17 @@ define([
             }
         }])
 
-        .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+        .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', 'routeResolverProvider',
+            function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, routeResolverProvider) {
+            app.register = {
+                controller: $controllerProvider.register,
+                directive: $compileProvider.directive,
+                filter: $filterProvider.register,
+                factory: $provide.factory,
+                service: $provide.service
+            };
+
+            var route = routeResolverProvider.route;
             $stateProvider
                 .state('app', {
                     url: "/app",
@@ -100,6 +113,12 @@ define([
                             templateUrl: "tpls/about.html"
                         }
                     }
+                })
+                .state('app.ngCordova', {
+                    url: "/ngCordova",
+                    views: {
+                        'menuContent': route.resolve('ngCordova', 'ngCordova.html')
+                    }
                 });
             $urlRouterProvider.otherwise('/app/demo');
 
@@ -119,4 +138,6 @@ define([
                 logo: 'img/ngCordova.png'
             }];
         }]);
+
+    return app;
 });
