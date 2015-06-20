@@ -1,0 +1,16 @@
+<ion-view title="Demo">
+    <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+    </ion-nav-buttons>
+    <ion-content>
+        <div class="row tech-container">
+            <div class="col-xs-4 col-sm-3 tech" ng-repeat="tech in techData">
+                <a menu-close href="#/app/demo/{{tech.id}}">
+                    <img ng-src="{{tech.logo}}" class="tech-img">
+                    <p>{{tech.name}}</p>
+                </a>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

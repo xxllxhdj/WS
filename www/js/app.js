@@ -44,7 +44,7 @@ define([
 
                 if (url.indexOf('goHome') != -1) {
                     $cordovaInAppBrowser.close();
-                    $state.go('app.demo');
+                    $state.go('app.demos');
                 } else if (url.indexOf('goNgCordova') != -1) {
                     $cordovaInAppBrowser.close();
                     $state.go('app.ngCordova');
@@ -55,7 +55,7 @@ define([
 
             function onHardwareBackButton(e) {
                 //if ($location.path().indexOf('/app/') != -1) {
-                if ($location.path().indexOf('/app/demo') != -1 || $location.path().indexOf('/app/about') != -1) {
+                if ($location.path().indexOf('/app/demos') != -1 || $location.path().indexOf('/app/about') != -1) {
                     if ($rootScope.confirmExit) {
                         ionic.Platform.exitApp();
                     } else {
@@ -78,7 +78,7 @@ define([
                         disableAnimate: false,
                         expire: 300
                     });
-                    $state.go('app.demo');
+                    $state.go('app.demos');
                 }
 
                 e.preventDefault();
@@ -103,12 +103,12 @@ define([
                     abstract: true,
                     templateUrl: "tpls/app.html"
                 })
-                .state('app.demo', {
-                    url: "/demo",
+                .state('app.demos', {
+                    url: "/demos",
                     views: {
                         'menuContent': {
-                            templateUrl: "tpls/demo.html",
-                            controller: 'DemoCtrl'
+                            templateUrl: "tpls/demos.html",
+                            controller: 'DemosCtrl'
                         }
                     }
                 })
@@ -120,20 +120,30 @@ define([
                         }
                     }
                 })
-                .state('app.ngCordova', {
+                .state('app.demo', {
+                    url: "/demo",
+                    abstract: true,
+                    views: {
+                        'menuContent': {
+                            templateUrl: "tpls/demo.html",
+                            controller: 'DemoCtrl'
+                        }
+                    }
+                })
+                .state('app.demo.ngCordova', {
                     url: "/ngCordova",
                     views: {
-                        'menuContent': route.resolve('ngCordova', 'ngCordova.html', 'TestController')
+                        'demoContent': route.resolve('ngCordova', 'index.html', 'TestController')
                     }
                 });
-            $urlRouterProvider.otherwise('/app/demo');
+            $urlRouterProvider.otherwise('/app/demos');
 
             $ionicConfigProvider.platform.android.navBar.alignTitle('center');
             $ionicConfigProvider.platform.android.backButton.previousTitleText(false);
             $ionicConfigProvider.platform.android.navBar.transition('ios');
         }])
 
-        .controller('DemoCtrl', ['$scope', function ($scope) {
+        .controller('DemosCtrl', ['$scope', function ($scope) {
             $scope.techData = [{
                 id: 'ionic',
                 name: 'ionic',
@@ -143,6 +153,17 @@ define([
                 name: 'ngCordova',
                 logo: 'img/ngCordova.png'
             }];
+        }])
+
+        .controller('DemoCtrl', ['$scope', '$ionicHistory', '$state', function ($scope, $ionicHistory, $state) {
+            $scope.go = function (state) {
+                $ionicHistory.nextViewOptions({
+                    historyRoot: true,
+                    disableAnimate: false,
+                    expire: 300
+                });
+                $state.go(state);
+            };
         }]);
 
     return app;

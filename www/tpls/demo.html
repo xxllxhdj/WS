@@ -1,12 +1,11 @@
-<ion-view title="Demo">
-    <ion-content>
-        <div class="row tech-container">
-            <div class="col-xs-4 col-sm-3 tech" ng-repeat="tech in techData">
-                <a menu-close href="#/app/{{tech.id}}">
-                    <img ng-src="{{tech.logo}}" class="tech-img">
-                    <p>{{tech.name}}</p>
-                </a>
-            </div>
-        </div>
-    </ion-content>
+<ion-view view-title="Demo Content">
+    <ion-nav-view name="demoContent"></ion-nav-view>
+    <ion-tabs class="tabs-icon-top">
+        <ion-tab title="首页" icon="ion-ios-pulse" ng-click="go('app.demos')">
+        </ion-tab>
+        <ion-tab title="关于" icon="ion-ios-chatboxes-outline" ng-click="go('app.about')">
+        </ion-tab>
+        <ion-tab title="设置" icon="ion-ios-gear-outline">
+        </ion-tab>
+    </ion-tabs>
 </ion-view>

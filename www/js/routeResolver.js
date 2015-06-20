@@ -30,9 +30,7 @@ define(['ionic'], function () {
             var resolve = function (appName, homeHtml, homeCtrl, controllerAs, secure) {
                 var routeDef = {},
                     baseDirectory = routeConfig.getBaseDirectory();
-                //routeDef.templateUrl = baseDirectory + appName + 'tpls/home.html';
-                routeDef.templateUrl = baseDirectory + appName + '/tpls/' + homeHtml;
-                //routeDef.controller = 'HomeCtrl';
+                routeDef.templateUrl = baseDirectory + appName + '/' + homeHtml;
                 if (homeCtrl) {
                     routeDef.controller = homeCtrl;
                 }
@@ -44,10 +42,7 @@ define(['ionic'], function () {
                     load: ['$q', '$rootScope', function ($q, $rootScope) {
                         var jsDir = baseDirectory + appName;
                         var dependencies = [
-                            jsDir + '/js/controllers.js',
-                            jsDir + '/js/directives.js',
-                            jsDir + '/js/services.js',
-                            jsDir + '/js/filters.js'
+                            jsDir + '/js/main.js'
                         ];
 
                         var defer = $q.defer();
