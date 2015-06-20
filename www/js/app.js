@@ -115,19 +115,23 @@ define([
                             }
                         }
                     })
-                    .state('demo', {
+                    .state('app.demo', {
                         url: "/demo",
                         abstract: true,
-                        templateUrl: "tpls/demo.html",
-                        controller: 'DemoCtrl'
+                        views: {
+                            'menuContent': {
+                                templateUrl: "tpls/demo.html",
+                                controller: 'DemoCtrl'
+                            }
+                        }
                     })
-                    .state('demo.ngCordova', {
+                    .state('app.demo.ngCordova', {
                         url: "/ngCordova",
                         views: {
                             'demoContent': route.resolve('ngCordova', 'index.html')
                         }
                     })
-                    .state('demo.barcodeScanner', {
+                    .state('app.demo.barcodeScanner', {
                         url: "/barcodeScanner",
                         views: {
                             'demoContent': {
@@ -144,7 +148,10 @@ define([
                 $ionicConfigProvider.platform.android.tabs.style('standard');
                 $ionicConfigProvider.platform.android.tabs.position('bottom');
 
-                $ionicConfigProvider.platform.ios.backButton.previousTitleText(false);
+                $ionicConfigProvider.platform.default.backButton.previousTitleText(false);
+                $ionicConfigProvider.platform.default.backButton.text(false);
+                $ionicConfigProvider.platform.default.views.transition('android');
+                $ionicConfigProvider.platform.default.views.swipeBackEnabled(false);
             }
         ])
 
