@@ -44,10 +44,10 @@ define([
 
                 if (url.indexOf('goHome') != -1) {
                     $cordovaInAppBrowser.close();
-                    $state.go('home');
+                    $state.go('app.demo');
                 } else if (url.indexOf('goNgCordova') != -1) {
                     $cordovaInAppBrowser.close();
-                    $state.go('ngCordova');
+                    $state.go('app.ngCordova');
                 } else if (url.indexOf('NULL') != -1) {
                     $cordovaInAppBrowser.close();
                 }
@@ -68,11 +68,17 @@ define([
                 } else if ($ionicHistory.backView()) {
                     $ionicHistory.goBack();
                 } else {
-                    $rootScope.confirmExit = true;
-                    $cordovaToast.showShortBottom(APPCONSTANTS.EXIT_APP_CONFIRM_STR);
-                    $timeout(function () {
-                        $rootScope.confirmExit = false;
-                    }, APPCONSTANTS.EXIT_APP_CONFIRM_TIME);
+                    //$rootScope.confirmExit = true;
+                    //$cordovaToast.showShortBottom(APPCONSTANTS.EXIT_APP_CONFIRM_STR);
+                    //$timeout(function () {
+                    //    $rootScope.confirmExit = false;
+                    //}, APPCONSTANTS.EXIT_APP_CONFIRM_TIME);
+                    $ionicHistory.nextViewOptions({
+                        historyRoot: true,
+                        disableAnimate: false,
+                        expire: 300
+                    });
+                    $state.go('app.demo');
                 }
 
                 e.preventDefault();
@@ -117,7 +123,7 @@ define([
                 .state('app.ngCordova', {
                     url: "/ngCordova",
                     views: {
-                        'menuContent': route.resolve('ngCordova', 'ngCordova.html')
+                        'menuContent': route.resolve('ngCordova', 'ngCordova.html', 'TestController')
                     }
                 });
             $urlRouterProvider.otherwise('/app/demo');

@@ -4,7 +4,6 @@
 define(['app'], function (app) {
 
     app.register.controller('TestController', ['$scope', function ($scope) {
-
     }]);
 
 });
