@@ -68,11 +68,6 @@ define([
                 } else if ($ionicHistory.backView()) {
                     $ionicHistory.goBack();
                 } else {
-                    //$rootScope.confirmExit = true;
-                    //$cordovaToast.showShortBottom(APPCONSTANTS.EXIT_APP_CONFIRM_STR);
-                    //$timeout(function () {
-                    //    $rootScope.confirmExit = false;
-                    //}, APPCONSTANTS.EXIT_APP_CONFIRM_TIME);
                     $ionicHistory.nextViewOptions({
                         historyRoot: true,
                         disableAnimate: false,
@@ -88,60 +83,70 @@ define([
 
         .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', 'routeResolverProvider',
             function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, routeResolverProvider) {
-            app.register = {
-                controller: $controllerProvider.register,
-                directive: $compileProvider.directive,
-                filter: $filterProvider.register,
-                factory: $provide.factory,
-                service: $provide.service
-            };
+                app.register = {
+                    controller: $controllerProvider.register,
+                    directive: $compileProvider.directive,
+                    filter: $filterProvider.register,
+                    factory: $provide.factory,
+                    service: $provide.service
+                };
 
-            var route = routeResolverProvider.route;
-            $stateProvider
-                .state('app', {
-                    url: "/app",
-                    abstract: true,
-                    templateUrl: "tpls/app.html"
-                })
-                .state('app.demos', {
-                    url: "/demos",
-                    views: {
-                        'menuContent': {
-                            templateUrl: "tpls/demos.html",
-                            controller: 'DemosCtrl'
+                var route = routeResolverProvider.route;
+                $stateProvider
+                    .state('app', {
+                        url: "/app",
+                        abstract: true,
+                        templateUrl: "tpls/app.html"
+                    })
+                    .state('app.demos', {
+                        url: "/demos",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "tpls/demos.html",
+                                controller: 'DemosCtrl'
+                            }
                         }
-                    }
-                })
-                .state('app.about', {
-                    url: "/about",
-                    views: {
-                        'menuContent': {
-                            templateUrl: "tpls/about.html"
+                    })
+                    .state('app.about', {
+                        url: "/about",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "tpls/about.html"
+                            }
                         }
-                    }
-                })
-                .state('app.demo', {
-                    url: "/demo",
-                    abstract: true,
-                    views: {
-                        'menuContent': {
-                            templateUrl: "tpls/demo.html",
-                            controller: 'DemoCtrl'
+                    })
+                    .state('demo', {
+                        url: "/demo",
+                        abstract: true,
+                        templateUrl: "tpls/demo.html",
+                        controller: 'DemoCtrl'
+                    })
+                    .state('demo.ngCordova', {
+                        url: "/ngCordova",
+                        views: {
+                            'demoContent': route.resolve('ngCordova', 'index.html')
                         }
-                    }
-                })
-                .state('app.demo.ngCordova', {
-                    url: "/ngCordova",
-                    views: {
-                        'demoContent': route.resolve('ngCordova', 'index.html', 'TestController')
-                    }
-                });
-            $urlRouterProvider.otherwise('/app/demos');
+                    })
+                    .state('demo.barcodeScanner', {
+                        url: "/barcodeScanner",
+                        views: {
+                            'demoContent': {
+                                templateUrl: "apps/ngCordova/tpls/barcodeScanner.html",
+                                controller: "BarcodeScannerCtrl"
+                            }
+                        }
+                    });
+                $urlRouterProvider.otherwise('/app/demos');
 
-            $ionicConfigProvider.platform.android.navBar.alignTitle('center');
-            $ionicConfigProvider.platform.android.backButton.previousTitleText(false);
-            $ionicConfigProvider.platform.android.navBar.transition('ios');
-        }])
+                $ionicConfigProvider.platform.android.navBar.alignTitle('center');
+                $ionicConfigProvider.platform.android.backButton.previousTitleText(false);
+                $ionicConfigProvider.platform.android.navBar.transition('ios');
+                $ionicConfigProvider.platform.android.tabs.style('standard');
+                $ionicConfigProvider.platform.android.tabs.position('bottom');
+
+                $ionicConfigProvider.platform.ios.backButton.previousTitleText(false);
+            }
+        ])
 
         .controller('DemosCtrl', ['$scope', function ($scope) {
             $scope.techData = [{
