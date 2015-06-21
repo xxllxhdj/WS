@@ -1,12 +1,22 @@
 <ion-side-menus enable-menu-with-back-views="false">
     <ion-side-menu-content>
         <ion-nav-bar class="bar-stable">
+            <ion-nav-back-button class="button-icon ion-ios-arrow-back">
+            </ion-nav-back-button>
             <ion-nav-buttons side="left">
                 <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
                 </button>
             </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
+        <ion-tabs class="tabs-icon-top" ng-show="appModel.tabsVisible">
+            <ion-tab title="首页" icon="ion-ios-pulse" ng-click="go('app.demos')">
+            </ion-tab>
+            <ion-tab title="关于" icon="ion-ios-chatboxes-outline" ng-click="go('app.about')">
+            </ion-tab>
+            <ion-tab title="设置" icon="ion-ios-gear-outline">
+            </ion-tab>
+        </ion-tabs>
     </ion-side-menu-content>
 
     <ion-side-menu side="left">

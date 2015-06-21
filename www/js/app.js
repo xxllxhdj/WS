@@ -55,7 +55,7 @@ define([
 
             function onHardwareBackButton(e) {
                 //if ($location.path().indexOf('/app/') != -1) {
-                if ($location.path().indexOf('/app/demos') != -1 || $location.path().indexOf('/app/about') != -1) {
+                if ($location.path().indexOf('demos') != -1 || $location.path().indexOf('about') != -1) {
                     if ($rootScope.confirmExit) {
                         ionic.Platform.exitApp();
                     } else {
@@ -96,7 +96,8 @@ define([
                     .state('app', {
                         url: "/app",
                         abstract: true,
-                        templateUrl: "tpls/app.html"
+                        templateUrl: "tpls/app.html",
+                        controller: 'AppCtrl'
                     })
                     .state('app.demos', {
                         url: "/demos",
@@ -115,26 +116,16 @@ define([
                             }
                         }
                     })
-                    .state('app.demo', {
-                        url: "/demo",
-                        abstract: true,
-                        views: {
-                            'menuContent': {
-                                templateUrl: "tpls/demo.html",
-                                controller: 'DemoCtrl'
-                            }
-                        }
-                    })
-                    .state('app.demo.ngCordova', {
+                    .state('app.ngCordova', {
                         url: "/ngCordova",
                         views: {
-                            'demoContent': route.resolve('ngCordova', 'index.html')
+                            'menuContent': route.resolve('ngCordova', 'index.html')
                         }
                     })
-                    .state('app.demo.barcodeScanner', {
+                    .state('app.barcodeScanner', {
                         url: "/barcodeScanner",
                         views: {
-                            'demoContent': {
+                            'menuContent': {
                                 templateUrl: "apps/ngCordova/tpls/barcodeScanner.html",
                                 controller: "BarcodeScannerCtrl"
                             }
@@ -144,7 +135,6 @@ define([
 
                 $ionicConfigProvider.platform.android.navBar.alignTitle('center');
                 $ionicConfigProvider.platform.android.backButton.previousTitleText(false);
-                //$ionicConfigProvider.platform.android.navBar.transition('ios');
                 $ionicConfigProvider.platform.android.navBar.transition('view');
                 $ionicConfigProvider.platform.android.views.transition('ios');
                 $ionicConfigProvider.platform.default.views.swipeBackEnabled(true);
@@ -154,10 +144,31 @@ define([
 
                 $ionicConfigProvider.platform.default.backButton.previousTitleText(false);
                 $ionicConfigProvider.platform.default.backButton.text(false);
-                //$ionicConfigProvider.platform.default.views.transition('android');
-                //$ionicConfigProvider.platform.default.views.swipeBackEnabled(false);
             }
         ])
+
+        .controller('AppCtrl', ['$scope', '$ionicHistory', '$state', function ($scope, $ionicHistory, $state) {
+            $scope.appModel = {
+                tabsVisible: false
+            };
+            $scope.go = function (state) {
+                $ionicHistory.nextViewOptions({
+                    historyRoot: true,
+                    disableAnimate: false,
+                    expire: 300
+                });
+                $state.go(state);
+            };
+
+            $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+                var url = toState.url;
+                if (url.indexOf('demos') != -1 || url.indexOf('about') != -1) {
+                    $scope.appModel.tabsVisible = false;
+                } else {
+                    $scope.appModel.tabsVisible = true;
+                }
+            });
+        }])
 
         .controller('DemosCtrl', ['$scope', function ($scope) {
             $scope.techData = [{
@@ -169,17 +180,6 @@ define([
                 name: 'ngCordova',
                 logo: 'img/ngCordova.png'
             }];
-        }])
-
-        .controller('DemoCtrl', ['$scope', '$ionicHistory', '$state', function ($scope, $ionicHistory, $state) {
-            $scope.go = function (state) {
-                $ionicHistory.nextViewOptions({
-                    historyRoot: true,
-                    disableAnimate: false,
-                    expire: 300
-                });
-                $state.go(state);
-            };
         }]);
 
     return app;
