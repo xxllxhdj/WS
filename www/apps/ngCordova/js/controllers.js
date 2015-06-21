@@ -19,4 +19,30 @@ define(['app', 'ngCordova'], function (app) {
         };
     }]);
 
+    app.register.controller('customPluginCtrl', ['$scope', 'extraInfoPlugin', function ($scope, extraInfoPlugin) {
+        extraInfoPlugin.get().then(function (extraInfo) {
+            $scope.extraInfo = extraInfo;
+            $scope.error = false;
+        }, function (err) {
+            $scope.extraInfo = err;
+            $scope.error = true;
+        });
+    }]);
+
+    app.register.controller('inAppBrowserCtrl', ['$rootScope', '$scope', '$cordovaInAppBrowser', function ($rootScope, $scope, $cordovaInAppBrowser) {
+        $scope.url = 'http://www.baidu.com';
+        $scope.target = '_blank';
+
+        $scope.openUrl = function () {
+            var options = {
+                location: "no"
+            };
+            $cordovaInAppBrowser.open($scope.url, $scope.target, options).then(function () {
+                //$cordovaToast.showShortBottom("InAppBrowser opened http://ngcordova.com successfully");
+            }, function (error) {
+                //$cordovaToast.showShortBottom("Error: " + error);
+            });
+        };
+    }]);
+
 });

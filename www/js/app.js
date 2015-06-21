@@ -130,6 +130,24 @@ define([
                                 controller: "BarcodeScannerCtrl"
                             }
                         }
+                    })
+                    .state('app.customPlugins', {
+                        url: "/customPlugins",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "apps/ngCordova/tpls/customPlugins.html",
+                                controller: "customPluginCtrl"
+                            }
+                        }
+                    })
+                    .state('app.inAppBrowser', {
+                        url: "/inAppBrowser",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "apps/ngCordova/tpls/inAppBrowser.html",
+                                controller: "inAppBrowserCtrl"
+                            }
+                        }
                     });
                 $urlRouterProvider.otherwise('/app/demos');
 
