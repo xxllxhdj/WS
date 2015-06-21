@@ -11,6 +11,11 @@ a:focus {
     text-decoration: none;
 }
 
+[nav-view-transition="ios"][nav-view-direction="forward"],
+[nav-view-transition="ios"][nav-view-direction="back"] {
+    background-color: transparent;
+}
+
 /**********************************************************Common******************************************************/
 
 /*********************************************************home.html****************************************************/
