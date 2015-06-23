@@ -35,4 +35,13 @@ define([
             }
         }
     });
+    app.register.state('app.file', {
+        url: "/file",
+        views: {
+            'menuContent': {
+                templateUrl: "apps/ngCordova/tpls/file.html",
+                controller: "fileCtrl"
+            }
+        }
+    });
 });

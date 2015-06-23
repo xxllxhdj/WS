@@ -3,6 +3,7 @@ define(['ionic'], function () {
     angular.module('WorkStation.constants', [])
 
         .constant('APPCONSTANTS', {
+            APP_NAME: 'workstation',
             SPLASH_SCREEN_EXTRA_DELAY: 1000,
             PLATFORM_BACK_BUTTON_PRIORITY_VIEW: 110,
             EXIT_APP_CONFIRM_TIME: 2000,

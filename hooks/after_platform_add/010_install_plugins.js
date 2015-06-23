@@ -7,7 +7,9 @@ var pluginlist = [
     'cordova-plugin-splashscreen',
     'phonegap-plugin-barcodescanner',
     'nl.x-services.plugins.toast',
-    'cordova-plugin-inappbrowser'
+    'cordova-plugin-inappbrowser',
+    //'cordova-plugin-file'
+    'org.apache.cordova.file'
 ];
 
 var localpluginlist = [
