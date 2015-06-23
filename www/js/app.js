@@ -88,7 +88,8 @@ define([
                     directive: $compileProvider.directive,
                     filter: $filterProvider.register,
                     factory: $provide.factory,
-                    service: $provide.service
+                    service: $provide.service,
+                    state: $stateProvider.state
                 };
 
                 var route = routeResolverProvider.route;
@@ -120,33 +121,6 @@ define([
                         url: "/ngCordova",
                         views: {
                             'menuContent': route.resolve('ngCordova', 'index.html')
-                        }
-                    })
-                    .state('app.barcodeScanner', {
-                        url: "/barcodeScanner",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "apps/ngCordova/tpls/barcodeScanner.html",
-                                controller: "BarcodeScannerCtrl"
-                            }
-                        }
-                    })
-                    .state('app.customPlugins', {
-                        url: "/customPlugins",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "apps/ngCordova/tpls/customPlugins.html",
-                                controller: "customPluginCtrl"
-                            }
-                        }
-                    })
-                    .state('app.inAppBrowser', {
-                        url: "/inAppBrowser",
-                        views: {
-                            'menuContent': {
-                                templateUrl: "apps/ngCordova/tpls/inAppBrowser.html",
-                                controller: "inAppBrowserCtrl"
-                            }
                         }
                     });
                 $urlRouterProvider.otherwise('/app/demos');

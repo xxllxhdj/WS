@@ -44,5 +44,4 @@ define(['app', 'ngCordova'], function (app) {
             });
         };
     }]);
-
 });
