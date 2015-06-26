@@ -2,15 +2,15 @@ define([
     'ionic',
     'ngCordova',
 
-    'routeResolver',
-    'js/constants'
+    'js/controllers',
+    'js/services'
 ], function () {
     var app = angular.module('WorkStation', [
         'ionic',
         'ngCordova',
 
-        'routeResolverServices',
-        'WorkStation.constants'
+        'WorkStation.controllers',
+        'WorkStation.services'
     ])
 
         .run(['$rootScope', '$ionicHistory', '$location', '$ionicPlatform', '$state', '$timeout', '$cordovaToast', '$cordovaInAppBrowser', 'APPCONSTANTS', function ($rootScope, $ionicHistory, $location, $ionicPlatform, $state, $timeout, $cordovaToast, $cordovaInAppBrowser, APPCONSTANTS) {
@@ -170,6 +170,7 @@ define([
                 routeResolver.load(appId).then(function () {
                     $state.go('app.' + appId);
                 });
+                //$state.go('app.' + appId);
             };
         }]);
 
