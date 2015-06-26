@@ -40,8 +40,9 @@ define(['ionic'], function () {
             $scope.goApp = function (appId) {
                 routeResolver.load(appId).then(function () {
                     $state.go('app.' + appId);
+                }, function () {
+                    alert('加载Demo失败，请确认是否已安装然后重试。');
                 });
-                //$state.go('app.' + appId);
             };
         }]);
 });

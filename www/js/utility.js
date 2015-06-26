@@ -58,6 +58,8 @@ define(['ionic'], function () {
                         loadCSS(jsDir + '/css/main.css');
                         defer.resolve();
                         //$rootScope.$apply();
+                    }, function () {
+                        defer.reject();
                     });
 
                     return defer.promise;
