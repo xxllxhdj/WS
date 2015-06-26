@@ -3,14 +3,16 @@ define([
     'ngCordova',
 
     'js/controllers',
-    'js/services'
+    'js/services',
+    'js/utility'
 ], function () {
     var app = angular.module('WorkStation', [
         'ionic',
         'ngCordova',
 
         'WorkStation.controllers',
-        'WorkStation.services'
+        'WorkStation.services',
+        'WorkStation.utility'
     ])
 
         .run(['$rootScope', '$ionicHistory', '$location', '$ionicPlatform', '$state', '$timeout', '$cordovaToast', '$cordovaInAppBrowser', 'APPCONSTANTS', function ($rootScope, $ionicHistory, $location, $ionicPlatform, $state, $timeout, $cordovaToast, $cordovaInAppBrowser, APPCONSTANTS) {
@@ -130,49 +132,7 @@ define([
                 $ionicConfigProvider.platform.default.backButton.previousTitleText(false);
                 $ionicConfigProvider.platform.default.backButton.text(false);
             }
-        ])
-
-        .controller('AppCtrl', ['$scope', '$ionicHistory', '$state', function ($scope, $ionicHistory, $state) {
-            $scope.appModel = {
-                tabsVisible: false
-            };
-            $scope.go = function (state) {
-                $ionicHistory.nextViewOptions({
-                    historyRoot: true,
-                    disableAnimate: false,
-                    expire: 300
-                });
-                $state.go(state);
-            };
-
-            $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-                var url = toState.url;
-                if (url.indexOf('demos') != -1 || url.indexOf('about') != -1) {
-                    $scope.appModel.tabsVisible = false;
-                } else {
-                    $scope.appModel.tabsVisible = true;
-                }
-            });
-        }])
-
-        .controller('DemosCtrl', ['$scope', '$state', 'routeResolver', function ($scope, $state, routeResolver) {
-            $scope.techData = [{
-                id: 'ionic',
-                name: 'ionic',
-                logo: 'img/ionic.png'
-            }, {
-                id: 'ngCordova',
-                name: 'ngCordova',
-                logo: 'img/ngCordova.png'
-            }];
-
-            $scope.goApp = function (appId) {
-                routeResolver.load(appId).then(function () {
-                    $state.go('app.' + appId);
-                });
-                //$state.go('app.' + appId);
-            };
-        }]);
+        ]);
 
     return app;
 });
