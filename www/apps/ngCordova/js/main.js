@@ -8,6 +8,14 @@ define([
     'apps/ngCordova/js/services',
     'apps/ngCordova/js/filters'
 ], function (app) {
+    app.register.state('app.ngCordova', {
+        url: "/ngCordova",
+        views: {
+            'menuContent': {
+                templateUrl: "apps/ngCordova/index.html"
+            }
+        }
+    });
     app.register.state('app.barcodeScanner', {
         url: "/barcodeScanner",
         views: {

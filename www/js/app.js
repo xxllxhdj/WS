@@ -81,8 +81,8 @@ define([
             }
         }])
 
-        .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide', 'routeResolverProvider',
-            function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $controllerProvider, $compileProvider, $filterProvider, $provide, routeResolverProvider) {
+        .config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', '$controllerProvider', '$compileProvider', '$filterProvider', '$provide',
+            function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
                 app.register = {
                     controller: $controllerProvider.register,
                     directive: $compileProvider.directive,
@@ -92,7 +92,6 @@ define([
                     state: $stateProvider.state
                 };
 
-                var route = routeResolverProvider.route;
                 $stateProvider
                     .state('app', {
                         url: "/app",
@@ -115,12 +114,6 @@ define([
                             'menuContent': {
                                 templateUrl: "tpls/about.html"
                             }
-                        }
-                    })
-                    .state('app.ngCordova', {
-                        url: "/ngCordova",
-                        views: {
-                            'menuContent': route.resolve('ngCordova', 'index.html')
                         }
                     });
                 $urlRouterProvider.otherwise('/app/demos');
@@ -162,7 +155,7 @@ define([
             });
         }])
 
-        .controller('DemosCtrl', ['$scope', function ($scope) {
+        .controller('DemosCtrl', ['$scope', '$state', 'routeResolver', function ($scope, $state, routeResolver) {
             $scope.techData = [{
                 id: 'ionic',
                 name: 'ionic',
@@ -172,6 +165,12 @@ define([
                 name: 'ngCordova',
                 logo: 'img/ngCordova.png'
             }];
+
+            $scope.goApp = function (appId) {
+                routeResolver.load(appId).then(function () {
+                    $state.go('app.' + appId);
+                });
+            };
         }]);
 
     return app;

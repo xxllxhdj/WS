@@ -1,73 +1,65 @@
-﻿'use strict';
+﻿define(['ionic'], function () {
+    
+    angular.module('routeResolverServices', [])
 
-define(['ionic'], function () {
+        .provider('routeResolver', function () {
+            var baseDirectory = 'apps/';
 
-    var routeResolver = function () {
-
-        this.$get = function () {
-            return this;
-        };
-
-        this.routeConfig = function () {
-            var baseDirectory = 'apps/',
-
-                setBaseDirectories = function (baseDir) {
-                    baseDirectory = baseDir;
-                },
-
-                getBaseDirectory = function () {
-                    return baseDirectory;
-                };
-
-            return {
-                setBaseDirectories: setBaseDirectories,
-                getBaseDirectory: getBaseDirectory
+            this.setBaseDirectory = function (baseDir) {
+                baseDirectory = baseDir;
             };
-        } ();
 
-        this.route = function (routeConfig) {
-
-            var resolve = function (appName, homeHtml, homeCtrl, controllerAs, secure) {
-                var routeDef = {},
-                    baseDirectory = routeConfig.getBaseDirectory();
-                routeDef.templateUrl = baseDirectory + appName + '/' + homeHtml;
-                if (homeCtrl) {
-                    routeDef.controller = homeCtrl;
+            this.$get = ['$rootScope','$q', function ($rootScope, $q) {
+                return {
+                    resolve: resolve,
+                    load: load
                 }
-                if (controllerAs) {
-                    routeDef.controllerAs = controllerAs;
+
+                function resolve (appName, homeHtml, homeCtrl, controllerAs, secure) {
+                    var routeDef = {};
+                    routeDef.templateUrl = baseDirectory + appName + '/' + homeHtml;
+                    if (homeCtrl) {
+                        routeDef.controller = homeCtrl;
+                    }
+                    if (controllerAs) {
+                        routeDef.controllerAs = controllerAs;
+                    }
+                    routeDef.secure = (secure) ? secure : false;
+                    routeDef.resolve = {
+                        load: function () {
+                            var jsDir = baseDirectory + appName;
+                            var dependencies = [
+                                jsDir + '/js/main.js'
+                            ];
+
+                            var defer = $q.defer();
+
+                            require(dependencies, function () {
+                                defer.resolve();
+                                //$rootScope.$apply();
+                            });
+
+                            return defer.promise;
+                        }
+                    };
+                    return routeDef;
                 }
-                routeDef.secure = (secure) ? secure : false;
-                routeDef.resolve = {
-                    load: ['$q', '$rootScope', function ($q, $rootScope) {
-                        var jsDir = baseDirectory + appName;
-                        var dependencies = [
-                            jsDir + '/js/main.js'
-                        ];
 
-                        var defer = $q.defer();
+                function load (appId) {
+                    var defer = $q.defer();
 
-                        require(dependencies, function () {
-                            defer.resolve();
-                            //$rootScope.$apply();
-                        });
+                    var jsDir = baseDirectory + appId;
+                    var dependencies = [
+                        jsDir + '/js/main.js'
+                    ];
 
-                        return defer.promise;
-                    }]
-                };
+                    require(dependencies, function () {
+                        defer.resolve();
+                        //$rootScope.$apply();
+                    });
 
-                return routeDef;
-            };
-
-            return {
-                resolve: resolve
-            };
-        } (this.routeConfig);
-
-    };
-
-    var servicesApp = angular.module('routeResolverServices', []);
-
-    //Must be a provider since it will be injected into module.config()    
-    servicesApp.provider('routeResolver', routeResolver);
+                    return defer.promise;
+                }
+            }];
+        });
 });
