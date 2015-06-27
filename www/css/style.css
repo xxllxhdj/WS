@@ -13,20 +13,12 @@ a:focus {
 
 [nav-view-transition="ios"] [nav-view="entering"],
 [nav-view-transition="ios"] [nav-view="leaving"] {
-    -webkit-transition-duration: 300ms;
-    transition-duration: 300ms;
     -webkit-transition-property: -webkit-transform;
     transition-property: transform;
 }
 [nav-view-transition="ios"][nav-view-direction="forward"],
 [nav-view-transition="ios"][nav-view-direction="back"] {
     background-color: transparent;
-}
-[nav-bar-transition="ios"] .title,
-[nav-bar-transition="ios"] .buttons,
-[nav-bar-transition="ios"] .back-text {
-    -webkit-transition-duration: 300ms;
-    transition-duration: 300ms;
 }
 
 /**********************************************************Common******************************************************/
