@@ -124,8 +124,8 @@ define([
                 $ionicConfigProvider.platform.android.backButton.previousTitleText(false);
                 $ionicConfigProvider.platform.android.navBar.transition('view');
                 $ionicConfigProvider.platform.android.views.transition('ios');
-                $ionicConfigProvider.platform.default.views.swipeBackEnabled(true);
-                $ionicConfigProvider.platform.default.views.swipeBackHitWidth(45);
+                $ionicConfigProvider.platform.android.views.swipeBackEnabled(true);
+                $ionicConfigProvider.platform.android.views.swipeBackHitWidth(45);
                 $ionicConfigProvider.platform.android.tabs.style('standard');
                 $ionicConfigProvider.platform.android.tabs.position('bottom');
 
