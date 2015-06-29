@@ -4,8 +4,8 @@ requirejs.config({
     paths: {
         app: 'js/app',
         ionic: 'lib/ionic/js/ionic.bundle',
-        ngCordova: 'lib/ngCordova/dist/ng-cordova',
-        domReady: 'lib/requirejs/domReady'
+        ngCordova: 'lib/ngCordova/dist/ng-cordova'//,
+        //domReady: 'lib/requirejs/domReady'
     },
     shim: {
         ngCordova: {
@@ -22,7 +22,10 @@ requirejs(['app'], function () {
     };
     document.addEventListener("deviceready", onDeviceReady, false);
     if (typeof cordova === 'undefined') {
-        require(['domReady!'], function (document) {
+        //require(['domReady!'], function (document) {
+        //    onDeviceReady();
+        //});
+        angular.element(document).ready(function() {
             onDeviceReady();
         });
     }
