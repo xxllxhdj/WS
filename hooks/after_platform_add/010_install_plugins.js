@@ -4,7 +4,8 @@
 
 // add your plugins to this list--either the identifier, the filesystem location or the URL
 var pluginlist = [
-    'cordova-plugin-splashscreen',
+    //'cordova-plugin-splashscreen',
+    'org.apache.cordova.splashscreen',
     'phonegap-plugin-barcodescanner',
     'nl.x-services.plugins.toast',
     'cordova-plugin-inappbrowser',
