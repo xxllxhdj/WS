@@ -108,6 +108,11 @@ define([
                                 templateUrl: "tpls/demos.html",
                                 controller: 'DemosCtrl'
                             }
+                        },
+                        resolve: {
+                            'loadingConfig': ['configService', function (configService) {
+                                return configService.loadingPromise;
+                            }]
                         }
                     })
                     .state('app.about', {
