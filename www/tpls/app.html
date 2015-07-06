@@ -19,16 +19,22 @@
         </ion-tabs>
     </ion-side-menu-content>
 
-    <ion-side-menu side="left">
+    <ion-side-menu side="left" class="side-menu-left">
         <ion-header-bar class="bar-stable">
-            <h1 class="title">工作站</h1>
+            <!--h1 class="title">工作站</h1-->
+            <ion-item class="item-avatar user-item">
+                <img src="img/photo.png">
+                <h2 class="user-name">工作站</h2>
+            </ion-item>
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item href="#/app/demo" menu-close>
+                <ion-item href="#/app/demo" class="item-icon-left" menu-close>
+                    <i class="icon ion-ios-home-outline"></i>
                     首页
                 </ion-item>
-                <ion-item href="#/app/about" menu-close>
+                <ion-item href="#/app/about" class="item-icon-left" menu-close>
+                    <i class="icon ion-ios-information-outline"></i>
                     关于
                 </ion-item>
             </ion-list>
