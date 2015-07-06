@@ -57,7 +57,10 @@ define([
 
             function onHardwareBackButton(e) {
                 //if ($location.path().indexOf('/app/') != -1) {
-                if ($location.path().indexOf('demos') != -1 || $location.path().indexOf('about') != -1) {
+                if ($location.path().indexOf('demos') != -1 ||
+                    $location.path().indexOf('about') != -1 ||
+                    $location.path().indexOf('option') != -1
+                ) {
                     if ($rootScope.confirmExit) {
                         ionic.Platform.exitApp();
                     } else {
@@ -113,6 +116,15 @@ define([
                             'loadingConfig': ['configService', function (configService) {
                                 return configService.loadingPromise;
                             }]
+                        }
+                    })
+                    .state('app.option', {
+                        url: "/option",
+                        views: {
+                            'menuContent': {
+                                templateUrl: "tpls/option.html",
+                                controller: 'OptionCtrl'
+                            }
                         }
                     })
                     .state('app.about', {

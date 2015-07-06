@@ -15,6 +15,50 @@ define(['ionic'], function () {
             EXIT_APP_CONFIRM_STR: '再按一次退出工作站'
         })
 
+        .factory('DemoService', ['configService', function (configService) {
+            var demos = [],
+                o = {};
+
+            init();
+
+            o.setDemoEnabled = function (id, enabled) {
+                for (var i in demos) {
+                    if (demos[i].id === id) {
+                        demos[i].enabled = enabled;
+                        configService.set('demos', demos);
+                    }
+                }
+            };
+            o.getDemos = function () {
+                return angular.isArray(demos) ? demos.slice(0, demos.length) : [];
+            };
+            o.getEnabledDemos = function () {
+                var enabledDemos = [];
+                angular.forEach(demos, function (demo) {
+                    if (demo.enabled === true) {
+                        enabledDemos.push(demo);
+                    }
+                });
+                return enabledDemos;
+            };
+
+            return o;
+
+            function init () {
+                demos = configService.get('demos', [{
+                    id: 'ionic',
+                    name: 'ionic',
+                    logo: 'img/ionic.png',
+                    enabled: true
+                }, {
+                    id: 'ngCordova',
+                    name: 'ngCordova',
+                    logo: 'img/ngCordova.png',
+                    enabled: true
+                }]);
+            }
+        }])
+
         .factory('utilService', ['APPCONSTANTS', function (APPCONSTANTS) {
             var o = {};
 

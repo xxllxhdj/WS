@@ -18,7 +18,7 @@ define(['ionic'], function () {
 
             $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
                 var url = toState.url;
-                if (url.indexOf('demos') != -1 || url.indexOf('about') != -1) {
+                if (url.indexOf('demos') != -1 || url.indexOf('about') != -1 || url.indexOf('option') != -1) {
                     $scope.appModel.tabsVisible = false;
                 } else {
                     $scope.appModel.tabsVisible = true;
@@ -26,16 +26,8 @@ define(['ionic'], function () {
             });
         }])
 
-        .controller('DemosCtrl', ['$scope', '$state', 'routeResolver', function ($scope, $state, routeResolver) {
-            $scope.techData = [{
-                id: 'ionic',
-                name: 'ionic',
-                logo: 'img/ionic.png'
-            }, {
-                id: 'ngCordova',
-                name: 'ngCordova',
-                logo: 'img/ngCordova.png'
-            }];
+        .controller('DemosCtrl', ['$scope', '$state', 'routeResolver', 'DemoService', function ($scope, $state, routeResolver, DemoService) {
+            $scope.techData = DemoService.getEnabledDemos();
 
             $scope.goApp = function (appId) {
                 routeResolver.load(appId).then(function () {
@@ -43,6 +35,16 @@ define(['ionic'], function () {
                 }, function () {
                     alert('加载Demo失败，请确认是否已安装然后重试。');
                 });
+            };
+        }])
+
+        .controller('OptionCtrl', ['$scope', 'DemoService', function ($scope, DemoService) {
+            $scope.data = {
+                demos: DemoService.getDemos()
+            };
+
+            $scope.setDemoEnabled = function (id, enabled) {
+                DemoService.setDemoEnabled(id, enabled);
             };
         }]);
 });

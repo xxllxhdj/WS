@@ -10,18 +10,17 @@
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
         <ion-tabs class="tabs-icon-top" ng-show="appModel.tabsVisible">
-            <ion-tab title="首页" icon="ion-ios-pulse" ng-click="go('app.demos')">
+            <ion-tab title="设置" icon="ion-ios-gear-outline" ng-click="go('app.option')">
             </ion-tab>
-            <ion-tab title="关于" icon="ion-ios-chatboxes-outline" ng-click="go('app.about')">
+            <ion-tab title="首页" icon="ion-ios-home-outline" ng-click="go('app.demos')">
             </ion-tab>
-            <ion-tab title="设置" icon="ion-ios-gear-outline">
+            <ion-tab title="关于" icon="ion-ios-information-outline" ng-click="go('app.about')">
             </ion-tab>
         </ion-tabs>
     </ion-side-menu-content>
 
     <ion-side-menu side="left" class="side-menu-left">
         <ion-header-bar class="bar-stable">
-            <!--h1 class="title">工作站</h1-->
             <ion-item class="item-avatar user-item">
                 <img src="img/photo.png">
                 <h2 class="user-name">工作站</h2>
@@ -32,6 +31,10 @@
                 <ion-item href="#/app/demo" class="item-icon-left" menu-close>
                     <i class="icon ion-ios-home-outline"></i>
                     首页
+                </ion-item>
+                <ion-item href="#/app/option" class="item-icon-left" menu-close>
+                    <i class="icon ion-ios-gear-outline"></i>
+                    设置
                 </ion-item>
                 <ion-item href="#/app/about" class="item-icon-left" menu-close>
                     <i class="icon ion-ios-information-outline"></i>
