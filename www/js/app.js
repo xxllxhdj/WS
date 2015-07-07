@@ -145,6 +145,7 @@ define([
                 $ionicConfigProvider.platform.android.views.swipeBackHitWidth(45);
                 $ionicConfigProvider.platform.android.tabs.style('standard');
                 $ionicConfigProvider.platform.android.tabs.position('bottom');
+                $ionicConfigProvider.platform.android.form.toggle('large');
 
                 $ionicConfigProvider.platform.default.backButton.previousTitleText(false);
                 $ionicConfigProvider.platform.default.backButton.text(false);
