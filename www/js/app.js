@@ -1,6 +1,7 @@
 define([
     'ionic',
     'ngCordova',
+    'lib/MicrosoftAjax',
 
     'js/controllers',
     'js/services',

@@ -3,6 +3,40 @@
  */
 define(['ionic'], function () {
     angular.module('WorkStation.utility', [])
+        .factory('SVProxy', function () {
+            var o = {};
+
+            o.callSV = function (jsonData) {
+                var svFullName = jsonData['name'],
+                    params = jsonData['params'],
+                    url = 'http://139.217.3.133:120/svc_script/' + '?n=' + svFullName + '&p=null';
+                return require([url], function(bpObj) {
+                    var svcProxy;
+                    params.unshift({
+                        CultureName: "zh-CN",
+                        EntCode: "001",
+                        OrgCode: "001",
+                        UserCode: "demo"
+                    });
+                    if (jsonData['onSuccess']) {
+                        _onSuccess = jsonData['onSuccess'];
+                        params.push(jsonData['onSuccess']);
+                    }
+                    if (jsonData['onFailure']) {
+                        _onFailure = jsonData['onFailure'];
+                        params.push(jsonData['onFailure']);
+                    }
+
+                    svcProxy = 'http://139.217.3.133:120/u9_gateway/' + 'RestServices/' + svFullName + '.svc';
+                    bpObj.set_path(svcProxy);
+                    return bpObj.Do.apply(bpObj, params);
+                }, function () {
+                    alert('请求bpObj失败！');
+                });
+            };
+
+            return o;
+        })
         .provider('routeResolver', function () {
             var baseDirectory = 'apps/';
 

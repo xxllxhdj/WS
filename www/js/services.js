@@ -55,6 +55,16 @@ define(['ionic'], function () {
                     name: 'ngCordova',
                     logo: 'img/ngCordova.png',
                     enabled: true
+                }, {
+                    id: 'ShipPicking',
+                    name: '条码拣货',
+                    logo: 'img/ShipPicking.png',
+                    enabled: true
+                }, {
+                    id: 'MessageRemind',
+                    name: '消息通知',
+                    logo: 'img/MessageRemind.png',
+                    enabled: true
                 }]);
             }
         }])
