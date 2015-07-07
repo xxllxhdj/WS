@@ -3,7 +3,7 @@
  */
 define(['app', 'ngCordova'], function (app) {
 
-    app.register.controller('TestController', ['$scope', function ($scope) {
+    app.register.controller('CordovaController', ['$scope', function ($scope) {
     }]);
 
     app.register.controller('BarcodeScannerCtrl', ['$scope', '$cordovaBarcodeScanner', function ($scope, $cordovaBarcodeScanner) {

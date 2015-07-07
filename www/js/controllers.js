@@ -26,7 +26,7 @@ define(['ionic'], function () {
             });
         }])
 
-        .controller('DemosCtrl', ['$scope', '$state', 'routeResolver', 'DemoService', function ($scope, $state, routeResolver, DemoService) {
+        .controller('DemosCtrl', ['$scope', '$rootScope', '$state', 'routeResolver', 'DemoService', function ($scope, $rootScope, $state, routeResolver, DemoService) {
             $scope.techData = DemoService.getEnabledDemos();
 
             $scope.goApp = function (appId) {
@@ -36,15 +36,20 @@ define(['ionic'], function () {
                     alert('加载Demo失败，请确认是否已安装然后重试。');
                 });
             };
+
+            $rootScope.$on('DemoEnabledChanged', function () {
+                $scope.techData = DemoService.getEnabledDemos();
+            });
         }])
 
-        .controller('OptionCtrl', ['$scope', 'DemoService', function ($scope, DemoService) {
+        .controller('OptionCtrl', ['$scope', '$rootScope', 'DemoService', function ($scope, $rootScope, DemoService) {
             $scope.data = {
                 demos: DemoService.getDemos()
             };
 
             $scope.setDemoEnabled = function (id, enabled) {
                 DemoService.setDemoEnabled(id, enabled);
+                $rootScope.$emit('DemoEnabledChanged');
             };
         }]);
 });

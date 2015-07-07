@@ -13,7 +13,8 @@ define([
             url: "/ngCordova",
             views: {
                 'menuContent': {
-                    templateUrl: "apps/ngCordova/index.html"
+                    templateUrl: "apps/ngCordova/index.html",
+                    controller: 'CordovaController'
                 }
             }
         })
