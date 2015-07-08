@@ -1,6 +1,7 @@
 define([
     'ionic',
     'ngCordova',
+    'uiBootstrap',
     'lib/MicrosoftAjax',
 
     'js/controllers',
@@ -10,6 +11,7 @@ define([
     var app = angular.module('WorkStation', [
         'ionic',
         'ngCordova',
+        'ui.bootstrap',
 
         'WorkStation.controllers',
         'WorkStation.services',

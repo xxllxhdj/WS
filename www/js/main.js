@@ -4,11 +4,15 @@ requirejs.config({
     paths: {
         app: 'js/app',
         ionic: 'lib/ionic/js/ionic.bundle',
-        ngCordova: 'lib/ngCordova/dist/ng-cordova'//,
+        ngCordova: 'lib/ngCordova/dist/ng-cordova',
+        uiBootstrap: 'lib/bootstrap/ui-bootstrap-tpls'//,
         //domReady: 'lib/requirejs/domReady'
     },
     shim: {
         ngCordova: {
+            deps: ['ionic']
+        },
+        uiBootstrap: {
             deps: ['ionic']
         }
     }
