@@ -1,5 +1,6 @@
 
 .expander {
+    position: relative;
     padding: 0;
 }
 .expander .body {
@@ -16,14 +17,6 @@
 }
 .footer .button .icon:before {
     line-height: 20px;
-}
-
-
-.content-expand {
-    top: 145px;
-}
-.content-collapse {
-    top: 60px;
 }
 
 .user-info {
