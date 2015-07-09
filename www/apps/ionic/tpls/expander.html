@@ -20,9 +20,23 @@
             </div>
         </item-expander>
         <ion-scroll item-expanded="data.expanded">
-            <ion-list>
-                <ion-item ng-repeat="pref in data.performances">
-                    {{pref.name}}
+            <ion-list class="pref-list">
+                <ion-item ng-repeat="pref in data.performances" ng-click="resetPref(pref.id)">
+                    <label ng-switch="$index" class="pref-rank">
+                        <img ng-switch-when="0" src="img/photo.png">
+                        <img ng-switch-when="1" src="img/photo.png">
+                        <img ng-switch-when="2" src="img/photo.png">
+                        <span ng-switch-default>{{$index + 1}}</span>
+                    </label>
+                    <img ng-src="{{pref.photo}}">
+                    <span>{{pref.name}}</span>
+                    <label class="pref-tips">
+                        <span>
+                            {{pref.num | number}}
+                            <i class="icon ion-social-yen"></i>
+                        </span>
+                        <i class="icon" ng-class="{'ion-ios-arrow-thin-up':pref.trend===1,'ion-ios-minus-empty':pref.trend===0,'ion-ios-arrow-thin-down':pref.trend===-1}"></i>
+                    </label>
                 </ion-item>
             </ion-list>
         </ion-scroll>

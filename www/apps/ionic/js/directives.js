@@ -30,18 +30,25 @@ define(['app'], function (app) {
         }
     });
 
-    app.register.directive('itemExpanded', function () {
+    app.register.directive('itemExpanded', ['$timeout', function ($timeout) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
                 scope.$watch(attrs.itemExpanded, function (value) {
-                    var expandHeight = value ? 145 : 20,
+                    var delay = value ? 350 : 0;
+                    $timeout(function () {
+                        update(value);
+                    }, delay);
+                });
+
+                function update (itemExpanded) {
+                    var expandHeight = itemExpanded ? 145 : 20,
                         navBarHeight = 44,
                         tabsHeight = 48,
                         docHeight = document.body.scrollHeight;
                     element[0].style.height = (docHeight - expandHeight - navBarHeight - tabsHeight) + 'px';
-                });
+                }
             }
         };
-    });
+    }]);
 });

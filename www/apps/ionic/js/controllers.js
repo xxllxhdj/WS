@@ -9,6 +9,10 @@ define(['app', 'ngCordova'], function (app) {
             current: performanceService.getUserPerf(),
             performances: performanceService.getAllPerfs()
         };
+
+        $scope.resetPref = function (userId) {
+            $scope.data.current = performanceService.getUserPerf(userId);
+        };
     }]);
 
 });

@@ -44,3 +44,32 @@
     color: red;
     border-bottom: 2px solid red;
 }
+.pref-list .item {
+    padding: 10px 5px 10px 0;
+}
+.pref-list .item > img {
+    width: 40px;
+    height: 40px;
+}
+.pref-list .item > span {
+    vertical-align: middle;
+}
+.pref-list .item > .pref-tips {
+    position: absolute;
+    top: 13px;
+    right: 10px;
+    text-align: right;
+    font-size: x-large;
+    margin-bottom: 0;
+}
+.pref-rank {
+    min-width: 50px;
+    text-align: center;
+    font-size: x-large;
+    vertical-align: middle;
+    margin-bottom: 0;
+}
+.pref-rank img {
+    width: 20px;
+    height: 20px;
+}
