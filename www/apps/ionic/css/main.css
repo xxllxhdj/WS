@@ -7,7 +7,6 @@
 }
 .expander .footer {
     background-color: #cdcdcd;
-    display: block;
 }
 .footer .button {
     min-height: 10px;
@@ -17,4 +16,38 @@
 }
 .footer .button .icon:before {
     line-height: 20px;
+}
+
+
+.content-expand {
+    top: 145px;
+}
+.content-collapse {
+    top: 60px;
+}
+
+.user-info {
+    margin-right: 0;
+    margin-left: 0;
+}
+.user-photo img {
+    width: 80px;
+    height: 80px;
+}
+.user-photo h5 {
+    text-align: center;
+    margin-bottom: 0;
+}
+.user-tips {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: right;
+}
+.user-tips .num-style {
+    font-size: x-large;
+}
+.user-tips .num-style span {
+    color: red;
+    border-bottom: 2px solid red;
 }

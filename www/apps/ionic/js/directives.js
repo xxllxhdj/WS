@@ -8,6 +8,9 @@ define(['app'], function (app) {
             restrict: 'E',
             replace: true,
             transclude: true,
+            scope: {
+                expanded: '=?'
+            },
             template:
                 '<div class="expander">' +
                     '<div collapse="!expanded">' +
@@ -20,7 +23,6 @@ define(['app'], function (app) {
                     '</div>' +
                 '</div>',
             link: function(scope, element, attrs) {
-                scope.expanded = false;
                 scope.toggle = function () {
                     scope.expanded = !scope.expanded;
                 };

@@ -1,32 +1,23 @@
 <ion-view title="expander">
-    <ion-content>
-        <item-expander>
-            expander.body
+    <ion-content class="has-tabs">
+        <item-expander expanded="data.expanded">
+            <div class="row user-info">
+                <div class="user-photo">
+                    <img ng-src="{{data.current.photo}}">
+                    <h5>{{data.current.name}}</h5>
+                </div>
+                <div class="user-tips">
+                    <h4>业绩排名 {{data.current.rank}}</h4>
+                    <div class="num-style">
+                        <span>
+                            {{data.current.num | number}}
+                            <i class="icon ion-social-yen"></i>
+                        </span>
+                        <i class="icon" ng-class="{'ion-ios-arrow-thin-up':data.current.trend===1,'ion-ios-minus-empty':data.current.trend===0,'ion-ios-arrow-thin-down':data.current.trend===-1}"></i>
+                    </div>
+                    <h5>目前，你击败了{{data.current.fight}}%的同事</h5>
+                </div>
+            </div>
         </item-expander>
-        <accordion close-others="oneAtATime">
-            <accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-                This content is straight in the template.
-            </accordion-group>
-            <accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-                {{group.content}}
-            </accordion-group>
-            <accordion-group heading="Dynamic Body Content">
-                <p>The body of the accordion group grows to fit the contents</p>
-                <button class="btn btn-default btn-md" ng-click="addItem()">Add Item</button>
-                <div ng-repeat="item in items">{{item}}</div>
-            </accordion-group>
-            <accordion-group is-open="status.open">
-                <accordion-heading>
-                    I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-                </accordion-heading>
-                This is just some content to illustrate fancy headings.
-            </accordion-group>
-        </accordion>
-        <ion-item ng-click="setExpanded()">
-            test
-        </ion-item>
-        <ion-item class="item-accordion" ng-show="data.expanded">
-            qwert
-        </ion-item>
     </ion-content>
 </ion-view>
