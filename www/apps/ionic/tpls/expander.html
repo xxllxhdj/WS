@@ -8,13 +8,8 @@
                 </div>
                 <div class="user-tips">
                     <h4>业绩排名 {{data.current.rank}}</h4>
-                    <div class="num-style">
-                        <span>
-                            {{data.current.num | number}}
-                            <i class="icon ion-social-yen"></i>
-                        </span>
-                        <i class="icon" ng-class="{'ion-ios-arrow-thin-up':data.current.trend===1,'ion-ios-minus-empty':data.current.trend===0,'ion-ios-arrow-thin-down':data.current.trend===-1}"></i>
-                    </div>
+                    <performance-num num="data.current.num" trend="data.current.trend" class="num-style">
+                    </performance-num>
                     <h5>目前，你击败了{{data.current.fight}}%的同事</h5>
                 </div>
             </div>
@@ -30,13 +25,7 @@
                     </label>
                     <img ng-src="{{pref.photo}}">
                     <span>{{pref.name}}</span>
-                    <label class="pref-tips">
-                        <span>
-                            {{pref.num | number}}
-                            <i class="icon ion-social-yen"></i>
-                        </span>
-                        <i class="icon" ng-class="{'ion-ios-arrow-thin-up':pref.trend===1,'ion-ios-minus-empty':pref.trend===0,'ion-ios-arrow-thin-down':pref.trend===-1}"></i>
-                    </label>
+                    <performance-num num="pref.num" trend="pref.trend" class="pref-tips"></performance-num>
                 </ion-item>
             </ion-list>
         </ion-scroll>

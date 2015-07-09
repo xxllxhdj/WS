@@ -19,6 +19,25 @@
     line-height: 20px;
 }
 
+.pref-num {
+    font-size: x-large;
+}
+.pref-num .ion-ios-arrow-thin-up:before,
+.pref-num .ion-ios-minus-empty:before {
+    color: red;
+}
+.pref-num .ion-ios-arrow-thin-down:before {
+    color: green;
+}
+.pref-num > .icon:before {
+    font-weight: bold;
+    font-size: xx-large;
+    margin: 0 0 0 6px;
+}
+.pref-num span i {
+    margin: 0 0 0 6px;
+}
+
 .user-info {
     margin-right: 0;
     margin-left: 0;
@@ -36,9 +55,6 @@
     top: 10px;
     right: 10px;
     text-align: right;
-}
-.user-tips .num-style {
-    font-size: x-large;
 }
 .user-tips .num-style span {
     color: red;
@@ -59,7 +75,6 @@
     top: 13px;
     right: 10px;
     text-align: right;
-    font-size: x-large;
     margin-bottom: 0;
 }
 .pref-rank {

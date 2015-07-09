@@ -27,7 +27,7 @@ define(['app'], function (app) {
                     scope.expanded = !scope.expanded;
                 };
             }
-        }
+        };
     });
 
     app.register.directive('itemExpanded', ['$timeout', function ($timeout) {
@@ -51,4 +51,23 @@ define(['app'], function (app) {
             }
         };
     }]);
+
+    app.register.directive('performanceNum', function () {
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                num: '=?',
+                trend: '=?'
+            },
+            template:
+                '<label class="pref-num">' +
+                    '<span>' +
+                        '{{num | number}}' +
+                        '<i class="icon ion-social-yen"></i>' +
+                    '</span>' +
+                    '<i class="icon" ng-class="{' + "'ion-ios-arrow-thin-up':trend===1,'ion-ios-minus-empty':trend===0,'ion-ios-arrow-thin-down':trend===-1" + '}"></i>' +
+                '</label>'
+        };
+    });
 });
