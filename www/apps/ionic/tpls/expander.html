@@ -1,6 +1,6 @@
 <ion-view title="expander">
     <ion-content scroll="false" class="has-tabs">
-        <item-expander>
+        <item-expander expanded="data.expanded">
             <div class="row user-info">
                 <div class="user-photo">
                     <img ng-src="{{data.current.photo}}">
@@ -19,7 +19,7 @@
                 </div>
             </div>
         </item-expander>
-        <ion-scroll>
+        <ion-scroll item-expanded="data.expanded">
             <ion-list>
                 <ion-item ng-repeat="pref in data.performances">
                     {{pref.name}}

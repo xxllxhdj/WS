@@ -5,6 +5,7 @@ define(['app', 'ngCordova'], function (app) {
 
     app.register.controller('ExpandCtrl', ['$scope', 'performanceService', function ($scope, performanceService) {
         $scope.data = {
+            expanded: true,
             current: performanceService.getUserPerf(),
             performances: performanceService.getAllPerfs()
         };
