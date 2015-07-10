@@ -12,10 +12,37 @@ define(['ionic'], function () {
             PLATFORM_BACK_BUTTON_PRIORITY_VIEW: 110,
             EXIT_APP_CONFIRM_TIME: 2000,
 
-            EXIT_APP_CONFIRM_STR: '再按一次退出工作站'
+            EXIT_APP_CONFIRM_STR: '再按一次退出工作站',
+
+            DEFAULT_APP_LIST: [{
+                id: 'ionic',
+                name: 'ionic',
+                logo: 'img/ionic.png',
+                enabled: true
+            }, {
+                id: 'ngCordova',
+                name: 'ngCordova',
+                logo: 'img/ngCordova.png',
+                enabled: true
+            }, {
+                id: 'bootstrap',
+                name: 'bootstrap',
+                logo: 'img/bootstrap.jpg',
+                enabled: true
+            }, {
+                id: 'ShipPicking',
+                name: '条码拣货',
+                logo: 'img/ShipPicking.png',
+                enabled: true
+            }, {
+                id: 'MessageRemind',
+                name: '消息通知',
+                logo: 'img/MessageRemind.png',
+                enabled: true
+            }]
         })
 
-        .factory('DemoService', ['configService', function (configService) {
+        .factory('DemoService', ['configService', 'APPCONSTANTS', function (configService, APPCONSTANTS) {
             var demos = [],
                 o = {};
 
@@ -45,27 +72,7 @@ define(['ionic'], function () {
             return o;
 
             function init () {
-                demos = configService.get('demos', [{
-                    id: 'ionic',
-                    name: 'ionic',
-                    logo: 'img/ionic.png',
-                    enabled: true
-                }, {
-                    id: 'ngCordova',
-                    name: 'ngCordova',
-                    logo: 'img/ngCordova.png',
-                    enabled: true
-                }, {
-                    id: 'ShipPicking',
-                    name: '条码拣货',
-                    logo: 'img/ShipPicking.png',
-                    enabled: true
-                }, {
-                    id: 'MessageRemind',
-                    name: '消息通知',
-                    logo: 'img/MessageRemind.png',
-                    enabled: true
-                }]);
+                demos = configService.get('demos', APPCONSTANTS.DEFAULT_APP_LIST);
             }
         }])
 
