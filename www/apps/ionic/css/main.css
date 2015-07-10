@@ -30,8 +30,8 @@
     color: green;
 }
 .pref-num > .icon:before {
-    font-weight: bold;
-    font-size: xx-large;
+    font-weight: 900;
+    font-size: x-large;
     margin: 0 0 0 6px;
 }
 .pref-num span i {

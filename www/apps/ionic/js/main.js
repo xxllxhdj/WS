@@ -25,5 +25,13 @@ define([
                     controller: 'ExpandCtrl'
                 }
             }
+        })
+        .state('app.scroll', {
+            url: '/scroll',
+            views: {
+                'menuContent': {
+                    templateUrl: 'apps/ionic/tpls/scroll.html'
+                }
+            }
         });
 });
