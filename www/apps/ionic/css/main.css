@@ -32,7 +32,7 @@
 .pref-num > .icon:before {
     font-weight: 900;
     font-size: x-large;
-    margin: 0 0 0 6px;
+    width: 18px;
 }
 .pref-num span i {
     margin: 0 0 0 6px;
